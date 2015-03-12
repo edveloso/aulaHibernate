@@ -1,12 +1,16 @@
 package modelo;
 
+import java.util.Collection;
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -38,7 +42,7 @@ public class Livro {
 	@Column(name="data_publicacao")
 	private Date dataPublicacao;
 
-	@OneToOne
+	@OneToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="cod_editora")
 	private Editora editora;
 	
@@ -46,6 +50,12 @@ public class Livro {
 	private Integer numeroPagina;
 	
 	
+	@ManyToMany(cascade=CascadeType.ALL)
+	@JoinTable(name="livro_autor",
+	     joinColumns=@JoinColumn(name="livr_id"),
+	     inverseJoinColumns=@JoinColumn(name="aut_id")
+			)
+	private Collection<Autor> autores;
 	
 	//hibernate necessita de que haja
 	//um construtor vazio
@@ -100,6 +110,14 @@ public class Livro {
 
 	public void setEditora(Editora editora) {
 		this.editora = editora;
+	}
+
+	public Collection<Autor> getAutores() {
+		return autores;
+	}
+
+	public void setAutores(Collection<Autor> autores) {
+		this.autores = autores;
 	}
 	
 }

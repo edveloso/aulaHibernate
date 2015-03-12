@@ -17,6 +17,7 @@
 
 		<mapping class="modelo.Livro"/>
 		<mapping class="modelo.Editora"/>
+		<mapping class="modelo.Autor"/>
 		
 	</session-factory>
 </hibernate-configuration>

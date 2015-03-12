@@ -1,11 +1,11 @@
-package modelo;
+package modelo.persistencia;
 
 import java.lang.reflect.ParameterizedType;
 import java.util.List;
 
 import org.hibernate.Session;
 
-public class HibernateDAO<T> implements DAO<T>{
+public abstract class HibernateDAO<T> implements DAO<T>{
 
 	private Class clazz;
 	protected Session session;
@@ -14,7 +14,6 @@ public class HibernateDAO<T> implements DAO<T>{
 		this.session = session;
 		 ParameterizedType pt = (ParameterizedType)  this.getClass().getGenericSuperclass();
 		 clazz = (Class<T>) pt.getActualTypeArguments()[0];
-		 
 	}
 	
 	@Override

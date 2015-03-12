@@ -1,4 +1,4 @@
-package modelo;
+package modelo.persistencia.imp;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
