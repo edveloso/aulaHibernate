@@ -6,6 +6,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -36,8 +38,14 @@ public class Livro {
 	@Column(name="data_publicacao")
 	private Date dataPublicacao;
 
+	@OneToOne
+	@JoinColumn(name="cod_editora")
+	private Editora editora;
+	
 	@Transient
 	private Integer numeroPagina;
+	
+	
 	
 	//hibernate necessita de que haja
 	//um construtor vazio
@@ -84,6 +92,14 @@ public class Livro {
 
 	public void setNumeroPagina(Integer numeroPagina) {
 		this.numeroPagina = numeroPagina;
+	}
+
+	public Editora getEditora() {
+		return editora;
+	}
+
+	public void setEditora(Editora editora) {
+		this.editora = editora;
 	}
 	
 }
