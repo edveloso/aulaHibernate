@@ -3,26 +3,30 @@ package visao;
 import java.util.Date;
 import java.util.List;
 
-import modelo.HibernatUtil;
+import modelo.Editora;
+import modelo.EditoraDAO;
 import modelo.Livro;
 import modelo.LivroDAO;
-
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.cfg.AnnotationConfiguration;
 
 public class Formulario {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		Livro livro = new Livro();
-		livro.setAutor("novo");
-		livro.setNome("meu livro favorito");
+		livro.setAutor("Goslim");
+		livro.setNome("Padrão de projetos");
 		livro.setDataPublicacao(new Date());
-		livro.setNumeroPagina(200);
+		livro.setNumeroPagina(980);
+		
+		Editora editora = new Editora();
+		editora.setNome("Abril cultural");
+		
+		EditoraDAO editoraDao = new EditoraDAO();
+		editoraDao.salvar(editora);
+		
+		livro.setEditora(editora);
 		
 		LivroDAO dao = new LivroDAO();
-		//dao.salvar(livro);
+		dao.salvar(livro);
 //		Livro livroDB = dao.getByCodigo(4);
 //		System.out.println(livroDB.getNome());
 //		System.out.println(livroDB.getAutor());
